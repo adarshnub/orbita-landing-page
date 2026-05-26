@@ -106,33 +106,6 @@ export default function PricingPage() {
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_0%,rgba(122,94,214,0.28),transparent_34rem),radial-gradient(circle_at_82%_22%,rgba(242,244,123,0.14),transparent_24rem),linear-gradient(180deg,#101421_0%,#121827_52%,#0b0e18_100%)]" />
       <div className="pointer-events-none fixed inset-x-0 top-0 -z-20 h-px bg-gradient-to-r from-transparent via-acid to-transparent opacity-80" />
 
-      <nav className="fixed left-1/2 top-3 z-50 flex w-[min(1180px,calc(100%-24px))] -translate-x-1/2 items-center justify-between rounded-[26px] border border-white/10 bg-panel/72 px-3 py-3 shadow-panel backdrop-blur-2xl">
-        <Link href="/" className="flex items-center gap-3 rounded-full pl-1 pr-3 text-ink no-underline">
-          <span className="grid size-10 place-items-center rounded-[14px] border border-acid/35 bg-iris/45 font-display text-2xl font-bold text-acid shadow-halo">
-            O
-          </span>
-          <span className="text-sm font-extrabold tracking-[0.18em]">ORBITA</span>
-        </Link>
-        <div className="hidden items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] p-1 md:flex">
-          <Link href="/#how" className="rounded-full px-4 py-2 text-sm font-bold text-white/72 no-underline transition hover:text-white">
-            Flow
-          </Link>
-          <Link href="/#channels" className="rounded-full px-4 py-2 text-sm font-bold text-white/72 no-underline transition hover:text-white">
-            Channels
-          </Link>
-          <span className="rounded-full bg-white px-4 py-2 text-sm font-bold text-[#171224]">Pricing</span>
-          <Link href="/#fit" className="rounded-full px-4 py-2 text-sm font-bold text-white/72 no-underline transition hover:text-white">
-            Fit
-          </Link>
-        </div>
-        <a
-          href="mailto:hello@orbita.ai"
-          className="inline-flex min-h-10 shrink-0 items-center gap-2 whitespace-nowrap rounded-full border border-acid/30 bg-acid px-4 text-sm font-black text-[#171224] no-underline shadow-acid transition hover:-translate-y-0.5"
-        >
-          Book demo <ArrowRight size={16} />
-        </a>
-      </nav>
-
       <section className="mx-auto w-[min(1320px,calc(100%-24px))] pb-14 pt-32 sm:pt-36">
         <Link href="/" className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.16em] text-signal no-underline">
           <ArrowLeft size={16} />
@@ -146,7 +119,7 @@ export default function PricingPage() {
               Pricing for every stage.
             </h1>
           </div>
-          <div className="rounded-[28px] border border-white/10 bg-[#151A2A]/76 p-6 shadow-panel backdrop-blur-xl">
+          <div className="hidden rounded-[28px] border border-white/10 bg-[#151A2A]/76 p-6 shadow-panel backdrop-blur-xl md:block">
             <p className="text-xl font-black leading-8">
               Monthly plans include Orbita workflows, agent memory, and audit reviews.
             </p>
@@ -156,7 +129,7 @@ export default function PricingPage() {
           </div>
         </div>
 
-        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 hidden gap-3 sm:grid-cols-2 md:grid lg:grid-cols-4">
           {included.map(item => (
             <div key={item.label} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.05] p-4">
               <item.icon className="text-acid" size={22} />
@@ -166,7 +139,7 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <section className="mx-auto grid w-[min(1320px,calc(100%-24px))] gap-4 pb-16 lg:grid-cols-2 2xl:grid-cols-4">
+      <section id="plans" className="mx-auto grid w-[min(1320px,calc(100%-24px))] scroll-mt-28 gap-4 pb-16 lg:grid-cols-2 2xl:grid-cols-4">
         {plans.map(plan => (
           <article
             key={plan.name}

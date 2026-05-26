@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Manrope, Sora, Unbounded } from 'next/font/google';
+import SiteNav from '@/components/SiteNav';
 import './globals.css';
 
 const display = Sora({
@@ -31,7 +32,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${display.variable} ${sans.variable} ${hero.variable}`}>{children}</body>
+      <body className={`${display.variable} ${sans.variable} ${hero.variable}`}>
+        <SiteNav />
+        {children}
+      </body>
     </html>
   );
 }

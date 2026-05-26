@@ -24,7 +24,6 @@ import {
   Volume2,
 } from 'lucide-react';
 import AnimatedContent from '@/components/AnimatedContent';
-import GooeyNav from '@/components/GooeyNav';
 import PlasmaWave from '@/components/PlasmaWave';
 import RotatingText from '@/components/RotatingText';
 import SpotlightCard from '@/components/SpotlightCard';
@@ -60,7 +59,28 @@ const proof = [
   ['24/7', 'ops memory'],
 ];
 
-const useCases = ['Builders', 'Taxi dispatch', 'Hospital shifts', 'Production crews'];
+const useCases = [
+  {
+    title: 'Builders',
+    text: 'Site updates, material delays, photos, approvals, and subcontractor follow-ups stay tied to the job.',
+    tags: ['Proof photos', 'Owner handoff', 'ETA checks'],
+  },
+  {
+    title: 'Taxi dispatch',
+    text: 'Trip requests, driver assignment, missed pickups, and customer replies become one tracked dispatch loop.',
+    tags: ['Driver owner', 'Route notes', 'Escalations'],
+  },
+  {
+    title: 'Hospital shifts',
+    text: 'Shift notes, patient-room requests, supply issues, and supervisor approvals do not disappear between teams.',
+    tags: ['Shift memory', 'Priority flags', 'Audit trail'],
+  },
+  {
+    title: 'Production crews',
+    text: 'Line issues, QC proof, downtime reasons, and next-shift actions are captured while work is still moving.',
+    tags: ['QC proof', 'Downtime reason', 'Next shift'],
+  },
+];
 
 const workspaceFeatures = [
   { icon: Building2, title: 'Create organization', text: 'One workspace for every company, site, or branch.' },
@@ -68,43 +88,10 @@ const workspaceFeatures = [
   { icon: UserCog, title: 'Assign roles', text: 'Control ownership, approvals, and audit access.' },
 ];
 
-const navItems = [
-  { label: 'Flow', href: '#how' },
-  { label: 'Channels', href: '#channels' },
-  { label: 'Pricing', href: '/pricing' },
-  { label: 'Fit', href: '#fit' },
-];
-
 export default function Home() {
   return (
     <main className="relative isolate min-h-screen overflow-hidden bg-void text-ink">
       <div className="pointer-events-none fixed inset-x-0 top-0 -z-20 h-px bg-gradient-to-r from-transparent via-acid to-transparent opacity-80" />
-
-      <nav className="fixed left-1/2 top-3 z-50 flex w-[min(1180px,calc(100%-24px))] -translate-x-1/2 items-center justify-between rounded-[26px] border border-white/10 bg-panel/72 px-3 py-3 shadow-panel backdrop-blur-2xl">
-        <a href="#top" className="flex items-center gap-3 rounded-full pl-1 pr-3 text-ink no-underline">
-          <span className="grid size-10 place-items-center rounded-[14px] border border-acid/35 bg-iris/45 font-display text-2xl text-acid shadow-halo">
-            O
-          </span>
-          <span className="text-sm font-extrabold tracking-[0.18em]">ORBITA</span>
-        </a>
-        <div className="hidden md:block">
-          <GooeyNav
-            items={navItems}
-            particleCount={10}
-            particleDistances={[42, 8]}
-            particleR={58}
-            animationTime={430}
-            timeVariance={180}
-            colors={[1, 2, 3, 4]}
-          />
-        </div>
-        <a
-          href="mailto:hello@orbita.ai"
-          className="inline-flex min-h-10 shrink-0 items-center gap-2 whitespace-nowrap rounded-full border border-acid/30 bg-acid px-4 text-sm font-black text-[#171224] no-underline shadow-acid transition hover:-translate-y-0.5"
-        >
-          Book demo <ArrowRight size={16} />
-        </a>
-      </nav>
 
       <section id="top" className="relative min-h-[100svh] overflow-hidden px-3 pb-5 pt-20 sm:px-6 sm:pt-24 lg:px-8">
         <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -413,24 +400,43 @@ export default function Home() {
       <section id="fit" className="mx-auto grid w-[min(1320px,calc(100%-24px))] scroll-mt-2 gap-4 py-20 lg:grid-cols-[0.9fr_1.1fr]">
         <AnimatedContent className="flex min-h-[420px] flex-col justify-between rounded-[30px] border border-white/10 bg-[#151A2A]/82 p-7 shadow-panel backdrop-blur-xl sm:p-10">
           <div>
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-acid">Built for messy teams</p>
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-acid">Teams</p>
             <h2 className="mt-4 font-display text-[clamp(2.05rem,3.3vw,3.55rem)] font-semibold leading-[1.02] tracking-normal">Work hides in chat.</h2>
           </div>
-          <p className="max-w-md text-xl font-semibold leading-8 text-white/66">
-            Orbita finds the owner, asks for proof, and keeps score.
-          </p>
+          <div className="max-w-xl">
+            <p className="text-xl font-semibold leading-8 text-white/66">
+              Orbita finds the owner, asks for proof, catches blockers, and remembers what each team needs next.
+            </p>
+            <div className="mt-7 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+              {['Owner', 'Proof', 'Follow-up'].map(item => (
+                <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-3">
+                  <span className="text-xs font-black uppercase tracking-[0.14em] text-white/42">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </AnimatedContent>
 
         <div className="grid gap-4 sm:grid-cols-2">
           {useCases.map((item, index) => (
-            <AnimatedContent key={item} delay={index * 0.06} distance={46}>
+            <AnimatedContent key={item.title} delay={index * 0.06} distance={46}>
               <SpotlightCard
                 spotlightColor="rgba(85, 214, 255, 0.2)"
-                className="min-h-[202px] rounded-[26px] border-white/10 bg-[#151A2A]/78 p-6 shadow-panel backdrop-blur-2xl"
+                className="min-h-[238px] rounded-[26px] border-white/10 bg-[#151A2A]/78 p-6 shadow-panel backdrop-blur-2xl"
               >
-                <div className="relative z-10 flex h-full flex-col justify-between">
-                  <ShieldCheck className="text-acid" size={28} />
-                  <h3 className="text-3xl font-black tracking-normal">{item}</h3>
+                <div className="relative z-10 flex h-full flex-col justify-between gap-7">
+                  <div>
+                    <ShieldCheck className="text-acid" size={28} />
+                    <h3 className="mt-4 text-3xl font-black tracking-normal">{item.title}</h3>
+                    <p className="mt-3 text-sm font-semibold leading-6 text-white/58">{item.text}</p>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {item.tags.map(tag => (
+                      <span key={tag} className="rounded-full border border-white/10 bg-white/[0.055] px-3 py-1.5 text-[0.68rem] font-black uppercase tracking-[0.1em] text-white/55">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </SpotlightCard>
             </AnimatedContent>
@@ -444,7 +450,7 @@ export default function Home() {
           <div className="relative z-10 flex flex-col gap-7 md:flex-row md:items-center md:justify-between">
             <div>
               <Mic2 className="mb-6" size={34} />
-              <h2 className="font-display text-[clamp(2rem,3.2vw,3.45rem)] font-semibold leading-[1.02] tracking-normal">Ready for the first orbit?</h2>
+              <h2 className="font-display text-[clamp(2rem,3.2vw,3.45rem)] font-semibold leading-[1.02] tracking-normal">Ready for your first orbit?</h2>
             </div>
             <a
               href="mailto:hello@orbita.ai"
