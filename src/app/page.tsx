@@ -1,5 +1,6 @@
 'use client';
 
+import NextImage from 'next/image';
 import {
   ArrowRight,
   Apple,
@@ -86,6 +87,48 @@ const workspaceFeatures = [
   { icon: Building2, title: 'Create organization', text: 'One workspace for every company, site, or branch.' },
   { icon: UsersRound, title: 'Add members', text: 'Invite leaders, managers, and field teams.' },
   { icon: UserCog, title: 'Assign roles', text: 'Control ownership, approvals, and audit access.' },
+];
+
+const adminShowcase = [
+  {
+    image: '/showcase/admin-org-canvas.png',
+    eyebrow: 'Org canvas',
+    title: 'Map who reports to whom.',
+    text: 'Drag people around the tree, see task pressure at a glance, and keep department context visible on every employee.',
+    points: ['Reporting lines', 'Active and overdue tasks', 'Department colors'],
+  },
+  {
+    image: '/showcase/admin-departments.png',
+    eyebrow: 'Departments',
+    title: 'Teach the agent how each team works.',
+    text: 'Create departments, add members, write department-level instructions, and keep role ownership clear before the first message lands.',
+    points: ['Department memory', 'Members and leads', 'AI instructions'],
+  },
+  {
+    image: '/showcase/admin-employees-orbita.png',
+    eyebrow: 'Employee channels',
+    title: 'Choose WhatsApp or Orbita per person.',
+    text: 'Some employees stay in WhatsApp. Others use Orbita Messenger for richer updates with voice, files, photos, and persistent context.',
+    points: ['WhatsApp numbers', 'Orbita linking', 'Blocked assigners'],
+  },
+];
+
+const consoleLoop = [
+  {
+    icon: Building2,
+    label: 'Configure',
+    text: 'Departments, employees, reporting lines, and channel routing live in the admin panel.',
+  },
+  {
+    icon: MessageSquareText,
+    label: 'Converse',
+    text: 'Employees keep using WhatsApp or switch to Orbita Messenger for richer field updates.',
+  },
+  {
+    icon: ClipboardCheck,
+    label: 'Track',
+    text: 'The agent turns those messages into owners, tasks, overdue signals, and proof checks.',
+  },
 ];
 
 export default function Home() {
@@ -347,6 +390,100 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="console" className="mx-auto w-[min(1320px,calc(100%-24px))] scroll-mt-24 py-20">
+        <AnimatedContent className="grid gap-7 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
+          <div>
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-acid">Admin console</p>
+            <h2 className="mt-4 max-w-3xl font-display text-[clamp(2.05rem,3.4vw,3.65rem)] font-semibold leading-[1.02] tracking-normal">
+              Orbita Task Manager is the control room behind Orbita.
+            </h2>
+          </div>
+          <p className="max-w-2xl text-lg font-semibold leading-8 text-white/62 lg:justify-self-end">
+            Operators configure the company once in the admin panel. Employees keep working from WhatsApp or Orbita Messenger. The agent uses the console rules, org chart, and channel settings to turn messages into tracked work.
+          </p>
+        </AnimatedContent>
+
+        <div className="mt-10 grid gap-4">
+          <div className="grid gap-3 md:grid-cols-3">
+            {consoleLoop.map((item, index) => (
+              <AnimatedContent key={item.label} delay={index * 0.05} distance={34}>
+                <div className="flex h-full gap-4 rounded-[24px] border border-white/10 bg-white/[0.045] p-5 backdrop-blur-xl">
+                  <span className="grid size-12 shrink-0 place-items-center rounded-2xl border border-acid/20 bg-acid/10 text-acid">
+                    <item.icon size={22} />
+                  </span>
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-[0.16em] text-acid">0{index + 1} / {item.label}</p>
+                    <p className="mt-2 text-sm font-semibold leading-6 text-white/62">{item.text}</p>
+                  </div>
+                </div>
+              </AnimatedContent>
+            ))}
+          </div>
+
+          <AnimatedContent className="relative overflow-hidden rounded-[34px] border border-white/10 bg-[#151A2A]/82 p-3 shadow-panel backdrop-blur-2xl sm:p-4 lg:p-5">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_0%,rgba(85,214,255,0.16),transparent_26rem),radial-gradient(circle_at_82%_18%,rgba(242,244,123,0.15),transparent_22rem)]" />
+            <div className="relative z-10 overflow-hidden rounded-[26px] border border-white/10 bg-[#080A10]/70">
+              <div className="flex items-center justify-between border-b border-white/10 bg-[#0D111E]/92 px-4 py-3">
+                <div className="flex items-center gap-2">
+                  <span className="size-3 rounded-full bg-danger" />
+                  <span className="size-3 rounded-full bg-acid" />
+                  <span className="size-3 rounded-full bg-success" />
+                </div>
+                <span className="text-[0.68rem] font-black uppercase tracking-[0.18em] text-white/42">Admin panel / organization canvas</span>
+              </div>
+              <NextImage
+                src={adminShowcase[0].image}
+                alt="Orbita Task Manager admin organization canvas with employee nodes and task counts"
+                width={1440}
+                height={920}
+                className="block h-auto w-full"
+                priority
+              />
+            </div>
+          </AnimatedContent>
+
+          <div className="grid gap-4 lg:grid-cols-3">
+            {adminShowcase.map((item, index) => (
+              <AnimatedContent key={item.title} delay={index * 0.06} distance={48}>
+                <SpotlightCard
+                  spotlightColor={index === 1 ? 'rgba(242, 244, 123, 0.18)' : 'rgba(85, 214, 255, 0.16)'}
+                  className="group h-full overflow-hidden rounded-[28px] border-white/10 bg-[#151A2A]/82 p-3 shadow-panel backdrop-blur-2xl"
+                >
+                  <div className="relative z-10 flex h-full flex-col">
+                    <div className="overflow-hidden rounded-[22px] border border-white/10 bg-[#080A10]/60">
+                      <NextImage
+                        src={item.image}
+                        alt={`${item.title} admin panel screenshot`}
+                        width={1440}
+                        height={920}
+                        className="aspect-[16/10] w-full object-cover object-top opacity-92 transition duration-500 group-hover:scale-[1.025] group-hover:opacity-100"
+                      />
+                    </div>
+                    <div className="flex flex-1 flex-col justify-between gap-6 p-4 sm:p-5">
+                      <div>
+                        <p className="text-xs font-black uppercase tracking-[0.18em] text-acid">{item.eyebrow}</p>
+                        <h3 className="mt-3 text-2xl font-black tracking-normal text-white">{item.title}</h3>
+                        <p className="mt-3 text-sm font-semibold leading-6 text-white/60">{item.text}</p>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {item.points.map(point => (
+                          <span
+                            key={point}
+                            className="rounded-full border border-white/10 bg-white/[0.055] px-3 py-1.5 text-[0.66rem] font-black uppercase tracking-[0.1em] text-white/58"
+                          >
+                            {point}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </SpotlightCard>
+              </AnimatedContent>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="messenger" className="mx-auto w-[min(1320px,calc(100%-24px))] scroll-mt-24 py-20">
         <AnimatedContent className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[#151A2A]/82 p-7 shadow-panel backdrop-blur-2xl sm:p-9">
@@ -376,7 +513,7 @@ export default function Home() {
             <SpotlightCard spotlightColor="rgba(242, 244, 123, 0.18)" className="rounded-[30px] border-white/10 bg-[#151A2A]/82 p-7 shadow-panel backdrop-blur-2xl sm:p-8">
               <div className="relative z-10">
                 <MessageSquareText className="text-acid" size={30} />
-                <p className="mt-7 text-sm font-black uppercase tracking-[0.22em] text-acid">WhatsApp Task Manager</p>
+                <p className="mt-7 text-sm font-black uppercase tracking-[0.22em] text-acid">Orbita Task Manager</p>
                 <h3 className="mt-3 text-3xl font-black tracking-normal">Run teams from WhatsApp.</h3>
                 <p className="mt-3 text-lg font-semibold leading-8 text-white/62">
                   Create an organization, add members, assign roles, and let Orbita track the work behind every chat.

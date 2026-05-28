@@ -9,6 +9,7 @@ import GooeyNav from '@/components/GooeyNav';
 const labels = [
   { label: 'Flow', homeHref: '#how', pageHref: '/#how' },
   { label: 'Channels', homeHref: '#channels', pageHref: '/#channels' },
+  { label: 'Console', homeHref: '#console', pageHref: '/#console' },
   { label: 'Pricing', homeHref: '/pricing', pageHref: '/pricing' },
   { label: 'Teams', homeHref: '#fit', pageHref: '/#fit' },
 ];
@@ -70,7 +71,7 @@ export default function SiteNav() {
         <GooeyNav
           key={pathname}
           items={navItems}
-          initialActiveIndex={isPricing ? 2 : 0}
+          initialActiveIndex={isPricing ? 3 : 0}
           particleCount={10}
           particleDistances={[42, 8]}
           particleR={58}
