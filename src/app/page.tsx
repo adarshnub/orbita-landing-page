@@ -1,6 +1,7 @@
 'use client';
 
 import NextImage from 'next/image';
+import Link from 'next/link';
 import {
   ArrowRight,
   Apple,
@@ -598,6 +599,18 @@ export default function Home() {
           </div>
         </AnimatedContent>
       </section>
+
+      <footer className="mx-auto flex w-[min(1320px,calc(100%-24px))] flex-col gap-4 border-t border-white/10 py-8 text-sm font-semibold text-white/46 sm:flex-row sm:items-center sm:justify-between">
+        <p>© 2026 Orbita. AI-native messaging for chat-first teams.</p>
+        <div className="flex flex-wrap gap-4">
+          <Link href="/privacy" className="text-white/62 no-underline transition hover:text-acid">
+            Privacy Policy
+          </Link>
+          <a href="mailto:hello@orbita.ai" className="text-white/62 no-underline transition hover:text-acid">
+            Contact
+          </a>
+        </div>
+      </footer>
     </main>
   );
 }
