@@ -9,9 +9,9 @@ import GooeyNav from '@/components/GooeyNav';
 const labels = [
   { label: 'Flow', homeHref: '#how', pageHref: '/#how' },
   { label: 'Channels', homeHref: '#channels', pageHref: '/#channels' },
+  { label: 'Product', homeHref: '#product', pageHref: '/#product' },
   { label: 'Console', homeHref: '#console', pageHref: '/#console' },
   { label: 'Pricing', homeHref: '/pricing', pageHref: '/pricing' },
-  { label: 'Teams', homeHref: '#fit', pageHref: '/#fit' },
 ];
 
 export default function SiteNav() {
@@ -71,7 +71,7 @@ export default function SiteNav() {
         <GooeyNav
           key={pathname}
           items={navItems}
-          initialActiveIndex={isPricing ? 3 : 0}
+          initialActiveIndex={isPricing ? navItems.findIndex(item => item.href === '/pricing') : 0}
           particleCount={10}
           particleDistances={[42, 8]}
           particleR={58}
@@ -107,8 +107,8 @@ export default function SiteNav() {
         <div className="absolute inset-0 bg-[#080A10]" />
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-iris/24 to-[#080A10]" />
         <div className="relative z-10 grid gap-1">
-          {navItems.map((item, index) => {
-            const active = isPricing ? index === 2 : false;
+          {navItems.map(item => {
+            const active = isPricing && item.href === '/pricing';
 
             return (
               <Link

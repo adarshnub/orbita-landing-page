@@ -3,15 +3,22 @@
 import NextImage from 'next/image';
 import Link from 'next/link';
 import {
+  AtSign,
   ArrowRight,
   Apple,
+  BarChart3,
+  BellRing,
   Bot,
   Building2,
   CheckCircle2,
   ClipboardCheck,
   Command,
   FileText,
+  GitBranch,
   Image as ImageIcon,
+  Languages,
+  ListFilter,
+  MonitorSmartphone,
   MoreVertical,
   MessageSquareText,
   Mic2,
@@ -22,8 +29,10 @@ import {
   Sparkles,
   Smartphone,
   UserCog,
+  UserRoundCheck,
   UsersRound,
   Volume2,
+  WifiOff,
 } from 'lucide-react';
 import AnimatedContent from '@/components/AnimatedContent';
 import PlasmaWave from '@/components/PlasmaWave';
@@ -40,12 +49,12 @@ const channelChoices = [
   {
     name: 'WhatsApp',
     text: 'Fast rollout for teams already there.',
-    features: ['Text tasks', 'Voice handoff', 'Basic proof'],
+    features: ['Natural-language tasks', 'Voice tasks', 'Team notifications'],
   },
   {
     name: 'Orbita Messenger',
-    text: 'The mobile app when work needs richer context.',
-    features: ['Voice analysis', 'PDF docs', 'Image analysis'],
+    text: 'Web and mobile when work needs richer context.',
+    features: ['Task threads', '@ departments', 'Offline queue'],
   },
 ];
 
@@ -85,9 +94,47 @@ const useCases = [
 ];
 
 const workspaceFeatures = [
-  { icon: Building2, title: 'Create organization', text: 'One workspace for every company, site, or branch.' },
-  { icon: UsersRound, title: 'Add members', text: 'Invite leaders, managers, and field teams.' },
-  { icon: UserCog, title: 'Assign roles', text: 'Control ownership, approvals, and audit access.' },
+  { icon: Building2, title: 'Model the company', text: 'Organizations, branches, departments, and reporting lines.' },
+  { icon: UsersRound, title: 'Share membership', text: 'One employee can belong to multiple departments.' },
+  { icon: UserCog, title: 'Protect ownership', text: 'Roles, blocked assigners, and task-level permissions.' },
+];
+
+const productCapabilities = [
+  {
+    icon: GitBranch,
+    eyebrow: 'Task rooms',
+    title: 'Every task gets a working room.',
+    text: 'Tasks and subtasks open as dedicated chat groups with their own members, messages, files, status, and clear assignee.',
+    tags: ['Task + subtask chat', 'Member controls', 'Close safeguards'],
+  },
+  {
+    icon: WifiOff,
+    eyebrow: 'Field ready',
+    title: 'Work keeps moving through weak networks.',
+    text: 'Messages queue locally, retry safely, and sync with read states, replies, forwarding, attachments, and push notifications.',
+    tags: ['Offline queue', 'Realtime sync', 'Push alerts'],
+  },
+  {
+    icon: ListFilter,
+    eyebrow: 'Task focus',
+    title: 'Your task view stays yours.',
+    text: 'Search and filter by status, organization, or department. Filters persist when you open a task, and recent activity rises to the top.',
+    tags: ['Persistent filters', 'Activity ordering', 'Unread counts'],
+  },
+  {
+    icon: UserRoundCheck,
+    eyebrow: 'Organization',
+    title: 'People fit the real org chart.',
+    text: 'Employees can sit in multiple departments, appear with every membership on the org canvas, and be added to any task or subtask.',
+    tags: ['Multi-department', 'Org canvas', 'Full org roster'],
+  },
+  {
+    icon: BarChart3,
+    eyebrow: 'Control room',
+    title: 'Managers see the whole operation.',
+    text: 'Track task health, overdue work, employee load, chat history, reports, settings, channel links, and layered AI instructions.',
+    tags: ['Reports', 'AI auditor', 'Org instructions'],
+  },
 ];
 
 const adminShowcase = [
@@ -96,7 +143,7 @@ const adminShowcase = [
     eyebrow: 'Org canvas',
     title: 'Map who reports to whom.',
     text: 'Drag people around the tree, see task pressure at a glance, and keep department context visible on every employee.',
-    points: ['Reporting lines', 'Active and overdue tasks', 'Department colors'],
+    points: ['Reporting lines', 'Active and overdue tasks', 'Multiple departments'],
   },
   {
     image: '/showcase/admin-departments.png',
@@ -391,6 +438,117 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="product" className="relative mx-auto w-[min(1320px,calc(100%-24px))] scroll-mt-24 py-20">
+        <div className="pointer-events-none absolute inset-x-[12%] top-1/3 -z-10 h-72 rounded-full bg-iris/14 blur-[110px]" />
+        <AnimatedContent className="grid gap-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
+          <div>
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-signal">Inside the product</p>
+            <h2 className="mt-4 max-w-3xl font-display text-[clamp(2.05rem,3.4vw,3.65rem)] font-semibold leading-[1.02] tracking-normal">
+              Messaging that understands how your organization works.
+            </h2>
+          </div>
+          <p className="max-w-2xl text-lg font-semibold leading-8 text-white/62 lg:justify-self-end">
+            Orbita connects the conversation, the people involved, and the one person accountable—without turning everyday work into form filling.
+          </p>
+        </AnimatedContent>
+
+        <div className="mt-10 grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
+          <AnimatedContent distance={50}>
+            <SpotlightCard
+              spotlightColor="rgba(242, 244, 123, 0.22)"
+              className="h-full min-h-[430px] overflow-hidden rounded-[32px] border-acid/16 bg-[#151A2A]/86 p-7 shadow-panel backdrop-blur-2xl sm:p-9"
+            >
+              <div className="relative z-10 flex h-full flex-col justify-between gap-10">
+                <div>
+                  <span className="grid size-14 place-items-center rounded-[20px] border border-acid/24 bg-acid/10 text-acid shadow-acid">
+                    <AtSign size={28} />
+                  </span>
+                  <p className="mt-8 text-sm font-black uppercase tracking-[0.22em] text-acid">People-aware mentions</p>
+                  <h3 className="mt-4 max-w-2xl text-[clamp(2rem,3.1vw,3.25rem)] font-black leading-[1.03] tracking-normal">
+                    Mention one owner. Bring in the whole department.
+                  </h3>
+                  <p className="mt-5 max-w-2xl text-lg font-semibold leading-8 text-white/62">
+                    Type @ to find people first, Orbita next, and departments after. A department mention adds its members to the task room and notifies them, while the explicit person mention remains the assignee.
+                  </p>
+                </div>
+
+                <div className="rounded-[24px] border border-white/10 bg-[#0D111E]/82 p-4 ring-1 ring-acid/5 sm:p-5">
+                  <p className="text-[0.68rem] font-black uppercase tracking-[0.18em] text-white/38">Voice task recipient</p>
+                  <div className="mt-4 flex flex-wrap items-center gap-2 text-sm font-black">
+                    <span className="rounded-full bg-acid px-3 py-2 text-[#171224]">@Subeesh</span>
+                    <span className="rounded-full border border-signal/25 bg-signal/10 px-3 py-2 text-signal">@Fabricators</span>
+                    <span className="text-white/45">send the site update tomorrow</span>
+                  </div>
+                  <div className="mt-5 grid gap-2 sm:grid-cols-3">
+                    {[
+                      ['Assignee', 'Subeesh'],
+                      ['Task members', 'Fabricators'],
+                      ['Fallback', 'Assign to sender'],
+                    ].map(([label, value]) => (
+                      <div key={label} className="rounded-2xl border border-white/8 bg-white/[0.045] p-3">
+                        <span className="block text-[0.62rem] font-black uppercase tracking-[0.13em] text-white/38">{label}</span>
+                        <strong className="mt-1.5 block text-sm text-white/84">{value}</strong>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="mt-4 flex items-center gap-2 text-xs font-bold leading-5 text-white/46">
+                    <Mic2 className="shrink-0 text-acid" size={15} />
+                    On voice notes, the typed @ recipient takes priority over names heard in the recording.
+                  </p>
+                </div>
+              </div>
+            </SpotlightCard>
+          </AnimatedContent>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {productCapabilities.map((item, index) => (
+              <AnimatedContent
+                key={item.title}
+                delay={index * 0.045}
+                distance={42}
+                className={index === productCapabilities.length - 1 ? 'sm:col-span-2' : ''}
+              >
+                <SpotlightCard
+                  spotlightColor={index % 2 ? 'rgba(85, 214, 255, 0.17)' : 'rgba(122, 94, 214, 0.2)'}
+                  className="group h-full min-h-[250px] rounded-[28px] border-white/10 bg-[#151A2A]/80 p-6 shadow-panel backdrop-blur-2xl"
+                >
+                  <div className="relative z-10 flex h-full flex-col justify-between gap-7">
+                    <div>
+                      <div className="flex items-center justify-between gap-4">
+                        <item.icon className="text-signal transition duration-300 group-hover:-translate-y-1 group-hover:text-acid" size={27} />
+                        <span className="text-[0.64rem] font-black uppercase tracking-[0.17em] text-white/34">{item.eyebrow}</span>
+                      </div>
+                      <h3 className="mt-6 text-2xl font-black leading-tight tracking-normal text-white">{item.title}</h3>
+                      <p className="mt-3 text-sm font-semibold leading-6 text-white/58">{item.text}</p>
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {item.tags.map(tag => (
+                        <span key={tag} className="rounded-full border border-white/9 bg-white/[0.045] px-2.5 py-1.5 text-[0.6rem] font-black uppercase tracking-[0.09em] text-white/46">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </SpotlightCard>
+              </AnimatedContent>
+            ))}
+          </div>
+        </div>
+
+        <AnimatedContent className="mt-4 grid gap-px overflow-hidden rounded-[24px] border border-white/10 bg-white/10 sm:grid-cols-3">
+          {[
+            { icon: Languages, label: 'English, Malayalam, Tamil & Hindi' },
+            { icon: BellRing, label: 'Task and department notifications' },
+            { icon: ShieldCheck, label: 'Tenant isolation and ownership rules' },
+          ].map(item => (
+            <div key={item.label} className="flex items-center gap-3 bg-[#101421]/95 p-5 text-sm font-black text-white/62">
+              <item.icon className="shrink-0 text-acid" size={20} />
+              {item.label}
+            </div>
+          ))}
+        </AnimatedContent>
+      </section>
+
       <section id="console" className="mx-auto w-[min(1320px,calc(100%-24px))] scroll-mt-24 py-20">
         <AnimatedContent className="grid gap-7 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
           <div>
@@ -491,6 +649,10 @@ export default function Home() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(85,214,255,0.16),transparent_24rem),radial-gradient(circle_at_82%_22%,rgba(242,244,123,0.13),transparent_22rem)]" />
             <div className="relative z-10">
               <div className="mb-8 flex flex-wrap gap-2">
+                <span className="inline-flex items-center gap-2 rounded-full border border-signal/20 bg-signal/10 px-3 py-2 text-xs font-black uppercase tracking-[0.12em] text-signal">
+                  <MonitorSmartphone size={15} />
+                  Web app
+                </span>
                 <span className="inline-flex items-center gap-2 rounded-full border border-acid/20 bg-acid/10 px-3 py-2 text-xs font-black uppercase tracking-[0.12em] text-acid">
                   <Smartphone size={15} />
                   Android app
@@ -502,10 +664,10 @@ export default function Home() {
               </div>
               <p className="text-sm font-black uppercase tracking-[0.22em] text-signal">Orbita Messenger</p>
               <h2 className="mt-4 max-w-2xl font-display text-[clamp(2.05rem,3.3vw,3.55rem)] font-semibold leading-[1.02] tracking-normal">
-                Built for richer field updates.
+                One messenger for chat and tracked work.
               </h2>
               <p className="mt-5 max-w-2xl text-lg font-semibold leading-8 text-white/62">
-                Use the mobile app when teams need voice analysis, PDFs, images, and clean proof capture.
+                Use Orbita on web or mobile for real-time chats, task and subtask rooms, voice, PDFs, images, mentions, and reliable field updates.
               </p>
             </div>
           </div>
@@ -515,9 +677,9 @@ export default function Home() {
               <div className="relative z-10">
                 <MessageSquareText className="text-acid" size={30} />
                 <p className="mt-7 text-sm font-black uppercase tracking-[0.22em] text-acid">Orbita Task Manager</p>
-                <h3 className="mt-3 text-3xl font-black tracking-normal">Run teams from WhatsApp.</h3>
+                <h3 className="mt-3 text-3xl font-black tracking-normal">Turn conversations into accountable task rooms.</h3>
                 <p className="mt-3 text-lg font-semibold leading-8 text-white/62">
-                  Create an organization, add members, assign roles, and let Orbita track the work behind every chat.
+                  Create tasks and subtasks from WhatsApp or Orbita, assign one owner, notify the right teams, and keep every update attached to the work.
                 </p>
               </div>
             </SpotlightCard>

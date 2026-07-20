@@ -22,7 +22,7 @@ const hero = Unbounded({
 
 export const metadata: Metadata = {
   title: 'Orbita | AI operations for chat-first teams',
-  description: 'Orbita turns chats, voice notes, PDFs, and images into tracked work for real-world teams.',
+  description: 'Orbita turns chats, voice notes, mentions, files, and department workflows into assigned task rooms for real-world teams.',
 };
 
 export default function RootLayout({
